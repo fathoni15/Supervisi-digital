@@ -62,9 +62,15 @@ class KurikulumController extends Controller
         //
     }
 
+    public function laporan()
+    {
+        $data = Dokumen::where('status','!=','belum')->get();
+        return view('kurikulum.laporan', compact('data'));
+    }
+
     public function guru()
     {
-        $data = Dokumen::all();
+        $data = Dokumen::where('nip','=', Auth::user()->nip)->get();
         return view('kurikulum.guru.dokumen', compact('data'));
     }
 

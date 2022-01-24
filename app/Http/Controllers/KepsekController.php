@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dokumen;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -20,6 +21,12 @@ class KepsekController extends Controller
     public function index()
     {
         return view('kepsek.home');
+    }
+
+    public function laporan()
+    {
+        $data = Dokumen::where('status','!=','belum')->get();
+        return view('kepsek.laporan', compact('data'));
     }
 
     /**

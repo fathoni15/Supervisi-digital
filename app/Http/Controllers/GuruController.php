@@ -6,6 +6,7 @@ use App\Models\Dokumen;
 use Illuminate\Http\Request;
 use App\Models\Jadwal;
 use Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class GuruController extends Controller
 {
@@ -25,9 +26,27 @@ class GuruController extends Controller
         return view('guru.home', compact('data'));
     }
 
+    public function belum()
+    {
+        $data = Dokumen::where('status','=','belum')->and('nama','!=','kurikulum');
+        return view('guru.dokumen', compact('data'));
+    }
+
+    public function lulus()
+    {
+        $data = Dokumen::where('status','=','lulus')->and('nama','!=','kurikulum');
+        return view('guru.dokumen', compact('data'));
+    }
+
+    public function tidakLulus()
+    {
+        $data = Dokumen::where('status','=','tidak lulus')->and('nama','!=','kurikulum');
+        return view('guru.dokumen', compact('data'));
+    }
+
     public function index()
     {
-        $data = Dokumen::all();
+        $data = Dokumen::where('nip','=', Auth::user()->nip)->get();
         return view('guru.dokumen', compact('data'));
     }
 
@@ -53,11 +72,19 @@ class GuruController extends Controller
         $request->validate ([
             'nip'=>'required',
             'mapel'=>'required',
-            'rpp'=>'required',
+            'rpp'=>'required|mimes:pdf|max:2048',
             'embed'=>'required',
         ]);
 
-        Dokumen::create($request->all());
+        $name = time().'.'. $request->file('rpp')->getClientOriginalName();
+        $request->rpp->move(public_path('rpp'), $name);
+
+        Dokumen::create([
+            'nip' => $request->nip,
+            'mapel' => $request->mapel,
+            'rpp' => $name,
+            'embed' => $request->embed,
+        ]);
         return redirect()->route('guru.index');
     }
 

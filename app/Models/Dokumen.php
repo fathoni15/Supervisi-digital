@@ -14,5 +14,7 @@ class Dokumen extends Model
         'mapel',
         'rpp',
         'embed',
+        'status',
+        'catatan',
     ];
 }

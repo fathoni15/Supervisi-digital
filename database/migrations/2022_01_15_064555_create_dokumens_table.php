@@ -19,7 +19,8 @@ class CreateDokumensTable extends Migration
             $table->string('mapel');
             $table->string('rpp');
             $table->string('embed');
-            $table->enum('status', ['lulus','belum','tidak lulus'])->default('belum');
+            $table->string('status')->default('belum');
+            $table->string('catatan')->nullable();
             $table->timestamps();
         });
     }

@@ -12,18 +12,22 @@
                     <thead>
                         <tr class="text-center">
                             <th>NIP</th>
+                            <th>Nama Guru</th>
                             <th>Tanggal</th>
                             <th>jam</th>
                             <th>ID Supervisor</th>
+                            <th>Nama Supervisor</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($data as $dt)
                         <tr class="text-center">
                             <td>{{$dt->nip}}</td>
+                            <td>{{$dt->guru->nama}}</td>
                             <td>{{$dt->tanggal}}</td>
                             <td>{{$dt->jam_mulai}} - {{$dt->jam_selesai}}</td>
                             <td>{{$dt->id_supervisor}}</td>
+                            <td>{{$dt->supervisor->nama}}</td>
                         </tr>
                         @endforeach
                     </tbody>

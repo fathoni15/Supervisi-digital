@@ -123,42 +123,80 @@
           </li>
           @if(Auth::user()->supervisor == 1)
           <li class="nav-item">
-            <a href="{{route('supervisor.home')}}" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-address-book"></i>
               <p>
                 Supervisor
-              </p>
-            </a>
-          </li>
-          @endif
-          @if(Auth::user()->role == 'kurikulum')
-          <li class="nav-item">
-            <a href="{{ route('kurikulum.jadwal') }}" class="nav-link">
-              <i class="nav-icon fas fa-newspaper"></i>
-              <p>
-                Jadwal
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Guru
                 <i class="right fas fa-angle-right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                  <a href="{{ route('kurikulum.guru') }}" class="nav-link">
-                    <i class="nav-icon fas fa-book"></i>
-                    <p>
-                      Dokumen
-                    </p>
-                  </a>
+                <li class="nav-item">
+                    <a href="{{ route('supervisor.home') }}" class="nav-link">
+                        <i class="nav-icon fas fa-newspaper"></i>
+                        <p>
+                            Jadwal
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('supervisor.dokumen') }}" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Dokumen
+                        </p>
+                    </a>
                 </li>
             </ul>
           </li>
+          @endif
+          @if(Auth::user()->role == 'kurikulum')
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book-reader"></i>
+              <p>
+                Kurikulum
+                <i class="right fas fa-angle-right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('kurikulum.jadwal') }}" class="nav-link">
+                    <i class="nav-icon fas fa-newspaper"></i>
+                    <p>
+                      Jadwal
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('kurikulum.laporan') }}" class="nav-link">
+                        <i class="nav-icon fas fa-database"></i>
+                        <p>
+                            Laporan
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+              Guru
+              <i class="right fas fa-angle-right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{ route('kurikulum.guru') }}" class="nav-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Dokumen
+                  </p>
+                </a>
+              </li>
+          </ul>
+        </li>
           @endif
           @if(Auth::user()->role == 'guru')
           <li class="nav-item">
@@ -166,6 +204,16 @@
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Dokumen
+              </p>
+            </a>
+          </li>
+          @endif
+          @if(Auth::user()->role == 'kepsek')
+          <li class="nav-item">
+            <a href="{{ route('kepsek.laporan') }}" class="nav-link">
+              <i class="nav-icon fas fa-database"></i>
+              <p>
+                Laporan
               </p>
             </a>
           </li>
